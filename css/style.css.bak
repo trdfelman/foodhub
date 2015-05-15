@@ -1,0 +1,106 @@
+/**
+ * Created by User2 on 4/6/2015.
+ */
+@font-face {
+    font-family: MyFont;
+    src: local('MyFont'),local('MyFont'),url('font/letloose.ttf')format('truetype');
+}
+.navbar-default {
+    background-color: #5d4383;
+}
+.navbar {
+    text-transform: none;
+    font-family: MyFont;
+    font-weight: 700;
+}
+#bs-example-navbar-collapse-1 > ul > li:nth-child(2),#bs-example-navbar-collapse-1 > ul > li:nth-child(3) > a,#bs-example-navbar-collapse-1 > ul > li:nth-child(4) > a,#mnu_4 > div.user_reg > input:nth-child(1),#mnu_4 > div.user_reg > input:nth-child(2),#btn-group-login > button , #btn-group-login > a, #status {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#page-top > header{
+    background: #fff;
+}
+#page-top > header > div > div > div > div > span.skills{
+    color: #545454;
+}
+.btn-outline {
+    background: #82bae5;
+    text-transform: uppercase;
+}
+.btn-success {
+    background-color: #82bae5;
+    border-color: #82bae5;
+}
+.btn-success:hover, .btn-success:focus, .btn-success.focus, .btn-success:active, .btn-success.active, .open>.dropdown-toggle.btn-success {
+    background-color: #329df0;
+    border-color: #329df0;
+}
+.place_review{
+    border-radius: 2px 2px 2px 2px;
+    -moz-border-radius: 2px 2px 2px 2px;
+    -webkit-border-radius: 2px 2px 2px 2px;
+    border: 1px solid #bdbad1;
+}
+.hotelIcon{
+    width: 50px;
+    height: 50px;
+}
+#select > span > span.selection > span > ul{
+    color: #303030;
+}
+#select > span{
+    width: 100% !important;
+}
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+#noSubmit{
+    display: none;
+}
+section{
+    padding: 180px 0 50px !important;
+}
+.intro > p{
+    font-size: 30px;
+    color: #545454;
+}
+.foot-nom{
+    font-family: MyFont;
+    color: #fff;
+}
+#page-top > footer > div.footer-below > div > div > div > a{
+    text-decoration: none;
+}
+#page-top > footer > div.footer-above > div > div > div{
+    margin-bottom: 30px;
+}
+#page-top > footer > div.footer-above{
+    padding-top: 20px;
+}
+#location_container > p{
+    font-size: 2em;
+    font-weight: 600;
+    float: left;
+}
+#mnu_1,#mnu_2,#your,#about,#h_place,#btn-group-places{
+    display:none;
+}
+.fb_iframe_widget{
+}
+#select > p{
+    color: #545454;
+}
+#mnu_4{
+    padding: 0 1em 0 1em;
+}
+#status{
+    color: #fff;
+}
