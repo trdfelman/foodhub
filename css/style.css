@@ -169,6 +169,7 @@ textarea {
     border-radius: 4px;
     margin: 1em;
     border-bottom: solid 3px #eee;
+    padding: 1em 0 1em 0;
 
 }
 
@@ -195,15 +196,30 @@ textarea {
 }
 
 #placeres > div > ul > li {
-    border-bottom: none;
+    border-bottom: 1px solid #ecf0f1;
     border-left: none;
     border-right: none;
     border-top: 1px solid #ecf0f1;
 
 }
 
+#placeres > div > button{
+    color: #333;
+    background-color: #EEEEEE;
+    border-color: #D8D8D8;
+}
+#placeres > div > button:hover{
+color: #ffffff;
+background-color: #1a242f;
+border-color: #161f29;
+}
+.star{
+    color:#FACE18;
+    font-size: 2em;
+}
 @media (min-width: 1200px) {
     #placeres > div {
         width: 45%;
+        padding: 1em 0 1em 0;
     }
 }

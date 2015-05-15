@@ -296,7 +296,7 @@ function display_sorted_results(localstorage_data) {
         var place_internationa_phonenuber = (typeof placedata.international_phone_number !== 'undefined') ? "<p>" + placedata.international_phone_number + "</p>" : "";
 
 
-        var place_rating = (typeof placedata.rating !== 'undefined') ? "<p>Rating based on aggregated user reviews:" + rating_display(placedata.rating) + "</p>" : "";
+        var place_rating = (typeof placedata.rating !== 'undefined') ? "<p>Rating based on aggregated user reviews:<span class='star'>" + rating_display(placedata.rating) + "</span></p>" : "";
         var place_website = (typeof placedata.website !== 'undefined') ? "<br/><a target='_blank' style='color:#324c73;' href='" + placedata.website + "'>" + placedata.website + "</a>" : "";
 
         var user_reviews = "";
@@ -306,7 +306,7 @@ function display_sorted_results(localstorage_data) {
                 var place_reviews = placedata.reviews[j];
                 var review_author = "<h5>" + place_reviews.author_name + "</h5>";
                 var review_authorlink = (typeof place_reviews.author_url !== 'undefined') ? "<a target='_blank' href='" + place_reviews.author_url + "'>" + review_author + "</a>" : "<a href='#'>" + review_author + "</a>";
-                var review_rating = "<p style='font-size: 15px;'>Rating:" + rating_display(place_reviews.rating) + "</p>";
+                var review_rating = "<p style='font-size: 15px;'>Rating: <span class='star'>" + rating_display(place_reviews.rating) + "</span> </p>";
                 var review_text = "<p style='font-size: 12px;'>" + place_reviews.text + "</p>";
 
                 user_reviews += "<li class='list-group-item' style='color: #333;'>" + review_authorlink + review_rating + review_text + "</li>";
@@ -320,7 +320,7 @@ function display_sorted_results(localstorage_data) {
 
         var final_users_review = "<ul class='list-group'>" + user_reviews + "</ul>";
 
-        str_container += "<div class='col-lg-6 '> <button class='btn btn-primary btn-sm add_review'  data-place_id= '" + placedata.place_id + "'> Add reviews</button>" + place_name + place_address + place_img_representation + place_internationa_phonenuber + place_rating + place_website + final_users_review + "</div>";
+        str_container += "<div class='col-lg-6 '>" + place_name + place_address + place_img_representation + place_internationa_phonenuber + place_rating + place_website + final_users_review + "<button class='btn btn-primary btn-sm add_review'  data-place_id= '" + placedata.place_id + "'> Write a review</button></div>";
     }
     document.getElementById("placeres").innerHTML = str_container;
 }
