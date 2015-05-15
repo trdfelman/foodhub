@@ -7,8 +7,8 @@ require_once("initialize.php");
 class DbCoreFunctions extends MySqlDatabase
 {
 
-    public $last_inserted_id='';
-    public $num_of_rows=0;
+    public $last_inserted_id = '';
+    public $num_of_rows = 0;
 
     /*
         method for selecting data from tables
@@ -65,7 +65,7 @@ class DbCoreFunctions extends MySqlDatabase
             $insert = $this->query($str_insert);
             if ($insert) {
                 //get the last inserted id and set it to out varialble name last_inserted_id
-                $this->last_inserted_id= $this->insert_id($this->connection);
+                $this->last_inserted_id = $this->insert_id($this->connection);
                 return true;
             } else {
                 return false;
@@ -123,7 +123,7 @@ class DbCoreFunctions extends MySqlDatabase
             foreach ($param as $field => $value) {
                 //separate each column out with its coresponding value
 
-                $arg[] = $field . " = '" .$this->escape_value($value)  . "' ";
+                $arg[] = $field . " = '" . $this->escape_value($value) . "' ";
 
             }
 

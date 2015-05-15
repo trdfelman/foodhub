@@ -13,7 +13,7 @@ class MySqlDatabase
     protected $password = "trscebu123";
     protected $dbname = "leloo";
 
-    protected  $connection;
+    protected $connection;
     private $magic_quotes_active;
     private $real_escape_string_exists;
 

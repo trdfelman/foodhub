@@ -11,8 +11,8 @@ require_once("lib/initialize.php");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Leloo</title>
-    <link rel="icon" href="img/icon.png" type="image/x-icon">
+    <title>foodhub</title>
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -75,29 +75,33 @@ require_once("lib/initialize.php");
         };
 
         function facebook_login() {
-            FB.login(function(response){
+            FB.login(function (response) {
 
-                if(response.status =='connected'){
+                if (response.status == 'connected') {
                     FB.api('/me', function (response) {
-                        $.post("public/userAction/savefbUser.php",{id:response.id,name:response.name,email:response.email},function(data){
-                            if(data == 1){
+                        $.post("public/userAction/savefbUser.php", {
+                            id: response.id,
+                            name: response.name,
+                            email: response.email
+                        }, function (data) {
+                            if (data == 1) {
                                 $("#user_login").hide();
                                 $("#status").hide();
                                 $(".login_wrapper").html("");
                                 $("#btn_register").hide();
-                                $(".userinfo_container").css("padding","10px 15px");
-                                $(".userinfo_container").html(response.name+' <div style="padding-top: 2px;padding-bottom: 10px;" id="btn-group-login" class="btn-group" role="group" aria-label="Default button group"><button type="button" class="btn btn-primary btn-sm logout">Logout</button></div>');
-                                setTimeout(function(){
-                                   $('#registerModal').modal('hide');
-                                },1000);
+                                $(".userinfo_container").css("padding", "10px 15px");
+                                $(".userinfo_container").html(response.name + ' <div style="padding-top: 2px;padding-bottom: 10px;" id="btn-group-login" class="btn-group" role="group" aria-label="Default button group"><button type="button" class="btn btn-primary btn-sm logout">Logout</button></div>');
+                                setTimeout(function () {
+                                    $('#registerModal').modal('hide');
+                                }, 1000);
 
                             }
                         });
                     });
-                }else{
+                } else {
                     console.log("log in canceled");
                 }
-            },{scope:'email'});
+            }, {scope: 'email'});
         }
         // Load the SDK asynchronously
         (function (d, s, id) {
@@ -148,10 +152,11 @@ require_once("lib/initialize.php");
                         if ($user->is_logged_in()) {
                             ?>
                             <div class="user_cont">
-                            <?php
-                            echo $user->user_fullname . " ";
-                            ?>
-                                <div id="btn-group-login" class="btn-group" role="group" aria-label="Default button group">
+                                <?php
+                                echo $user->user_fullname . " ";
+                                ?>
+                                <div id="btn-group-login" class="btn-group" role="group"
+                                     aria-label="Default button group">
                                     <button type="button" class="btn btn-primary btn-sm logout">Logout</button>
                                 </div>
                             </div>
@@ -190,11 +195,15 @@ require_once("lib/initialize.php");
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                         aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="exampleModalLabel" style="text-transform:none;color:#545454">Sign in</h4>
+                                <h4 class="modal-title" id="exampleModalLabel"
+                                    style="text-transform:none;color:#545454">Sign in</h4>
                             </div>
                             <div class="modal-body">
                                 <div class="login_wrapper">
-                                    <button class="btn btn-primary btn-sm" style="background-color: #5776Cd;border-color: #5776Cd;" onclick="facebook_login();"><i class="fa fa-facebook"></i> connect</button>
+                                    <button class="btn btn-primary btn-sm"
+                                            style="background-color: #5776Cd;border-color: #5776Cd;"
+                                            onclick="facebook_login();"><i class="fa fa-facebook"></i> connect
+                                    </button>
                                     <div id="fb-root"></div>
                                 </div>
 
@@ -205,7 +214,8 @@ require_once("lib/initialize.php");
                                         &nbsp;<span class="or">or</span>
                                         <input class="form-control" id="txt_email" type="email" required="email"
                                                placeholder="Email">
-                                        <input class="form-control" id="txt_password" type="password" required="password"
+                                        <input class="form-control" id="txt_password" type="password"
+                                               required="password"
                                                placeholder="Password">
 
                                         <p>
@@ -221,7 +231,9 @@ require_once("lib/initialize.php");
                                 <div class="modal-body">
                                     <div id="reg_error"></div>
                                     <hr>
-                                    <h4 class="modal-title" id="exampleModalLabel" style="text-transform:none;color:#545454">Quick sign up</h4>
+                                    <h4 class="modal-title" id="exampleModalLabel"
+                                        style="text-transform:none;color:#545454">Quick sign up</h4>
+
                                     <div class="form-group">
                                         <input name="username" type="text" class="form-control" placeholder="Name">
                                     </div>
@@ -235,7 +247,8 @@ require_once("lib/initialize.php");
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
-                                    <button id="btn_register" type="submit" name="register" class="btn btn-primary btn-sm">
+                                    <button id="btn_register" type="submit" name="register"
+                                            class="btn btn-primary btn-sm">
                                         Continue
                                     </button>
                                 </div>
@@ -445,19 +458,20 @@ require_once("lib/initialize.php");
                 <div class="footer-col col-lg-12">
                     <ul class="list-inline">
                         <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                            <a target="_blank" href="https://www.facebook.com/minatocompany"
+                               class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
                         </li>
                         <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                            <a target="_blank href="#" class="btn-social btn-outline"><i
+                                class="fa fa-fw fa-google-plus"></i></a>
                         </li>
                         <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                            <a target="_blank href="#" class="btn-social btn-outline"><i
+                                class="fa fa-fw fa-twitter"></i></a>
                         </li>
                         <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                            <a target="_blank href="#" class="btn-social btn-outline"><i
+                                class="fa fa-fw fa-linkedin"></i></a>
                         </li>
                     </ul>
                 </div>

@@ -1,8 +1,8 @@
 <?php
 
 require_once("../../lib/initialize.php");
-if($user->is_logged_in()){
+if ($user->is_logged_in()) {
     echo "1";
-}else{
+} else {
     echo "0";
 }
