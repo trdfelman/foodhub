@@ -14,18 +14,6 @@ var place_details_sorbydistance = [];
 var radius_val;
 
 $(document).ready(function () {
-
-    $(".navbar-brand").click(function () {
-        var p_id = "ChIJZz1DaxqZqTMRYZcdlmHube0";
-        $.post("public/userAction/getPlaceReview.php", {placeid: p_id}, function (data) {
-            if (data) {
-                user_place_review = data;
-                var user_review = JSON.parse(data);
-                console.log(JSON.stringify(user_review));
-            }
-        });
-    });
-
     $(document).on("click", ".add_review", function () {
         $("#frm_reviews").attr('andid', 'james');
     });
@@ -104,7 +92,10 @@ $(document).ready(function () {
             $("#recent").append($("<option></option>").text(selected_val[i].text).val(selected_val[i].id));
         }
         var totalsize  = ($("#recent option").size()) - 3;
-        $("#recent option").slice(0,totalsize).remove();
+        if(recentitems>1){
+            $("#recent option").slice(0,totalsize).remove();
+        }
+
         $("#selecta").select2({
             placeholder: "Select Places...",
             allowClear: true,
