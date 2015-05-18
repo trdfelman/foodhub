@@ -4,7 +4,11 @@
 
 @font-face {
     font-family: MyFont;
-    src: local('MyFont'), local('MyFont'), url('font/letloose.ttf') format('truetype');
+    src: local('MyFont'), local('MyFont'), url('font/Luna.ttf') format('truetype');
+}
+@font-face {
+    font-family: MapFont;
+    src: local('MapFont'), local('MapFont'), url('font/MapperKit.ttf') format('truetype');
 }
 
 .navbar-default {
@@ -14,7 +18,7 @@
 .navbar {
     text-transform: none;
     font-family: MyFont;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 #bs-example-navbar-collapse-1 > ul > li:nth-child(2), #bs-example-navbar-collapse-1 > ul > li:nth-child(3) > a, #bs-example-navbar-collapse-1 > ul > li:nth-child(4) > a, #mnu_4 > div.user_reg > input:nth-child(2), #btn-group-login > button, #btn-group-login > a, #status, #mnu_4 {
@@ -222,4 +226,8 @@ border-color: #161f29;
         width: 45%;
         padding: 1em 0 1em 0;
     }
+}
+
+.mapper {
+    font-family: MapFont;
 }
