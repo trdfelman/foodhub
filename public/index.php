@@ -53,7 +53,7 @@ require_once("lib/initialize.php");
             $.getJSON("js/place_types.json", function (place_type) {
                 $("#selecta option").remove(); // Remove all <option> child tags.
                 $.each(place_type.place_types, function (index, item) { // Iterates through a collection
-                    $("#selecta").append( // Append an object to the inside of the select box
+                    $("#selecta2").append( // Append an object to the inside of the select box
                         $("<option></option>") // Yes you can do this.
                             .text(item.label)
                             .val(item.id)
@@ -275,7 +275,12 @@ require_once("lib/initialize.php");
             </div>
 
             <select class="js-example-basic-multiple form-control" multiple="" id="selecta">
+                <optgroup id="recent" label="Recent selection">
 
+                </optgroup>
+                <optgroup id="selecta2" label="Places">
+                    <option value="select">select any</option>
+                </optgroup>
             </select>
         </div>
         <div class="row">

@@ -98,6 +98,18 @@ $(document).ready(function () {
                 $("#mnu_1,#your").css("display", "block");
             }
         }
+        selected_val    = $("#selecta").select2('data');
+        recentitems     = $('#recent option').size();
+        for(i = 0 ; i < selected_val.length;i++){
+            $("#recent").append($("<option></option>").text(selected_val[i].text).val(selected_val[i].id));
+        }
+        var totalsize  = ($("#recent option").size()) - 3;
+        $("#recent option").slice(0,totalsize).remove();
+        $("#selecta").select2({
+            placeholder: "Select Places...",
+            allowClear: true,
+            maximumSelectionLength: 3
+        });
 
     });
 
