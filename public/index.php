@@ -369,6 +369,7 @@ require_once("lib/initialize.php");
                     <button type="button" class="sortby btn btn-success active ">Popularity</button>
                     <button type="button" class="sortby btn btn-success ">Distance</button>
                 </div>
+                <p  class="loading btn-lg"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading... </p>
                 <div id="places">
 
                 </div>
@@ -384,12 +385,6 @@ require_once("lib/initialize.php");
             </div>
         </div>
         <hr/>
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-                <div id="p_user_review">
-                </div>
-            </div>
-        </div>
     </div>
 </section>
 

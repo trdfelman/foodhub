@@ -14,9 +14,6 @@ var place_details_sorbydistance = [];
 var radius_val;
 
 $(document).ready(function () {
-    $(document).on("click", ".add_review", function () {
-        $("#frm_reviews").attr('andid', 'james');
-    });
     $("#selecta").select2({
         placeholder: "Select Places...",
         allowClear: true,
@@ -33,7 +30,6 @@ $(document).ready(function () {
             rankBy: google.maps.places.RankBy.PROMINENCE,
             types: selected
         };
-        console.log('radius_val: ' + radius_val);
     });
     $('#my_slider').on('change', function () {
         selected = $("#selecta").select2("val");
@@ -44,7 +40,6 @@ $(document).ready(function () {
             rankBy: google.maps.places.RankBy.PROMINENCE,
             types: selected
         };
-        console.log('radius_val: ' + radius_val);
     });
 
     $(document).on("change", "#selecta", function () {
@@ -56,8 +51,6 @@ $(document).ready(function () {
             rankBy: google.maps.places.RankBy.PROMINENCE,
             types: selected
         };
-
-
     });
 
     $('#cmdSubmit').click(function () {
@@ -67,15 +60,19 @@ $(document).ready(function () {
         localStorage.removeItem("leloo_by_prominence");
         localStorage.removeItem("leloo_by_distance");
         if ($("#selecta").select2("val")) {
-            alert(radius_val);
             $(this).hide();
             $("#noSubmit").show();
-
+            radius_val = $('#my_slider').val();
+            request.types = selected;
+            request.radius = radius_val;
+            request.rankBy = google.maps.places.RankBy.PROMINENCE;
             getLocation();
-
+            $(".loading").show();
             setTimeout(function () {
                 $("#noSubmit").hide();
                 $("#cmdSubmit").fadeIn();
+                display_sorted_results(localStorage.getItem("leloo_by_prominence"))
+                $(".loading").fadeOut();
             }, 2000)
         } else {
             $('#alert-msg').html("<div class='alert alert-warning alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><strong>Ops!&nbsp;</strong>Please select place/s.</div>");
@@ -112,14 +109,18 @@ $(document).ready(function () {
         if ($(this).text() === 'Distance') {
 
             if ("leloo_by_distance" in localStorage) {
-                display_sorted_results(localStorage.getItem("leloo_by_distance"))
+                display_sorted_results(localStorage.getItem("leloo_by_distance"));
             } else {
-
                 if ($("#selecta").select2("val")) {
                     request.types = selected;
                     request.radius = null;
                     request.rankBy = google.maps.places.RankBy.DISTANCE;
                     getLocation();
+                    $(".loading").fadeIn();
+                    setTimeout(function(){
+                        display_sorted_results(localStorage.getItem("leloo_by_distance"));
+                        $(".loading").fadeOut();
+                    },2000);
                 }
 
             }
@@ -128,7 +129,7 @@ $(document).ready(function () {
 
             if ("leloo_by_prominence" in localStorage) {
 
-                display_sorted_results(localStorage.getItem("leloo_by_prominence"))
+                display_sorted_results(localStorage.getItem("leloo_by_prominence"));
             } else {
                 if ($("#selecta").select2("val")) {
                     radius_val = $('#my_slider').val();
@@ -136,6 +137,7 @@ $(document).ready(function () {
                     request.radius = radius_val;
                     request.rankBy = google.maps.places.RankBy.PROMINENCE;
                     getLocation();
+                    display_sorted_results(localStorage.getItem("leloo_by_prominence"));
                 }
 
             }
@@ -220,6 +222,7 @@ function callback(results, status) {
             if (checkRadiusDistance(results[i], latlng, radius_val)) {
                 createMarker(results[i]);
             }
+
         }
 
         $('#alert-msg').html("<div class='alert alert-success alert-dismissable'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Returned <strong>" + results.length + "</strong> results</div>");
@@ -255,21 +258,15 @@ function createMarker(place) {
     document.getElementById("placeres").innerHTML = "";
     var service = new google.maps.places.PlacesService(map);
     service.getDetails(requestdata, function (placedata, status) {
-
         if (status == google.maps.places.PlacesServiceStatus.OK) {
 
             if (request.rankBy === google.maps.places.RankBy.PROMINENCE) {
                 place_details_sortbyprominence.push((placedata));
                 localStorage.setItem("leloo_by_prominence", JSON.stringify(place_details_sortbyprominence));
-                display_sorted_results(localStorage.getItem("leloo_by_prominence"));
-
             } else if (request.rankBy === google.maps.places.RankBy.DISTANCE) {
                 place_details_sorbydistance.push((placedata));
                 localStorage.setItem("leloo_by_distance", JSON.stringify(place_details_sorbydistance));
-                display_sorted_results(localStorage.getItem("leloo_by_distance"));
-
             }
-
         }
     });
 
@@ -280,15 +277,36 @@ function createMarker(place) {
 
 
 }
+
+function getReview(pid){
+    $.ajax({
+        method: "POST",
+        url: "public/userAction/getPlaceReview.php",
+        data: "placeid=" + pid,
+        success: function (data) {
+            if (data) {
+                var db_user_review = JSON.parse(data);
+                for (i = 0; i < db_user_review.length; i++) {
+                   // alert(db_user_review[i].id);
+                    var db_author_review = "<h5>" + db_user_review[i].full_name + "</h5>";
+                    var db_rating_review = "<p style='font-size: 15px;'>Rating:  <span class='star'>" + rating_display(db_user_review[i].rating) + "</p>";
+                    var db_text_review = "<p style='font-size: 12px;'>" + db_user_review[i].reviewtext + "</p>";
+
+                    u_review = "<li class='list-group-item' style='color: #333;'>" + db_author_review + db_rating_review + db_text_review + "</li>";
+                    $("#"+db_user_review[i].placeid).append(u_review);
+                }
+            }
+        }
+    });
+}
 function display_sorted_results(localstorage_data) {
 
     var data = localstorage_data.replace(/"\\&quot;/g, "'").replace(/\\&quot;"/g, "'");
 
     data = JSON.parse(data);
-    document.getElementById("places").innerHTML = "";
-    document.getElementById("p_user_review").innerHTML = "";
+    document.getElementById("places").innerHTML = '';
     var str_container = "";
-    var u_review = "";
+
     for (var i = 0; i < data.length; i++) {
 
         var placedata = data[i];
@@ -315,50 +333,14 @@ function display_sorted_results(localstorage_data) {
                 user_reviews += "<li class='list-group-item' style='color: #333;'>" + review_authorlink + review_rating + review_text + "</li>";
             }
         }
-
-        getUser_Review(placedata.place_id, place_name, place_address, function (data) {
-            u_review += data;
-            document.getElementById("p_user_review").innerHTML = u_review;
-        });
-
-        var final_users_review = "<ul class='list-group'>" + user_reviews + "</ul>";
+        getReview(placedata.place_id);
+        var final_users_review = "<ul class='list-group' id='"+placedata.place_id+"'>" + user_reviews + "</ul>";
 
         str_container += "<div class='col-lg-6 '>" + place_name + place_address + place_img_representation + place_internationa_phonenuber + place_rating + place_website + final_users_review + "<button class='btn btn-primary btn-sm add_review'  data-place_id= '" + placedata.place_id + "'> Write a review</button></div>";
     }
+
     document.getElementById("placeres").innerHTML = str_container;
 }
-
-function getUser_Review(placeid, place_name, place_address, callback) {
-    var p_id = placeid;
-    var u_review = "";
-
-    $.ajax({
-        method: "POST",
-        url: "public/userAction/getPlaceReview.php",
-        data: "placeid=" + p_id,
-        success: function (data) {
-            if (data) {
-                $("#p_user_review").html("");
-                var db_user_review = JSON.parse(data);
-                for (i = 0; i < db_user_review.length; i++) {
-                    var db_author_review = "<h5>" + db_user_review[i].full_name + "</h5>";
-                    var db_rating_review = "<p style='font-size: 15px;'>Rating:" + rating_display(db_user_review[i].rating) + "</p>";
-                    var db_text_review = "<p style='font-size: 12px;'>" + db_user_review[i].reviewtext + "</p>";
-
-                    u_review += "<li class='list-group-item' style='color: #333;'>" + db_author_review + db_rating_review + db_text_review + "</li>";
-
-                }
-                var db_review = "<div class='col-lg-6 '>" + place_name + place_address + "<ul class='list-group'>" + u_review + "</ul></div>";
-
-
-                callback(db_review);
-            }
-        }
-    });
-
-
-}
-
 
 function getPlace_contenet(place) {
     var content = '';
