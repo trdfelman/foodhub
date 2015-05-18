@@ -87,7 +87,7 @@
     }
 }
 
-#noSubmit {
+#noSubmit,.loading {
     display: none;
 }
 
