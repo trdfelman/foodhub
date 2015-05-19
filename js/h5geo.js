@@ -14,6 +14,13 @@ var place_details_sorbydistance = [];
 var radius_val;
 
 $(document).ready(function () {
+    $(window).load(function(){
+        if(localStorage.getItem("recent_choice") != null){
+            $("#recent").html("");
+            $("#recent").html(localStorage.getItem("recent_choice"));
+        }
+    });
+
     $("#selecta").select2({
         placeholder: "Select Places...",
         allowClear: true,
@@ -83,6 +90,8 @@ $(document).ready(function () {
                 $("#mnu_1,#your").css("display", "block");
             }
         }
+        var recent_cat = [];
+
         selected_val    = $("#selecta").select2('data');
         recentitems     = $('#recent option').size();
         for(i = 0 ; i < selected_val.length;i++){
@@ -92,13 +101,13 @@ $(document).ready(function () {
         if(recentitems>1){
             $("#recent option").slice(0,totalsize).remove();
         }
-
         $("#selecta").select2({
             placeholder: "Select Places...",
             allowClear: true,
             maximumSelectionLength: 3
         });
 
+        localStorage.setItem("recent_choice",$("#recent").html());
     });
 
     $(".sortby").click(function () {
@@ -300,46 +309,48 @@ function getReview(pid){
     });
 }
 function display_sorted_results(localstorage_data) {
+    if(localstorage_data != null){
+        var data = localstorage_data.replace(/"\\&quot;/g, "'").replace(/\\&quot;"/g, "'");
 
-    var data = localstorage_data.replace(/"\\&quot;/g, "'").replace(/\\&quot;"/g, "'");
+        data = JSON.parse(data);
+        document.getElementById("places").innerHTML = '';
+        var str_container = "";
 
-    data = JSON.parse(data);
-    document.getElementById("places").innerHTML = '';
-    var str_container = "";
+        for (var i = 0; i < data.length; i++) {
 
-    for (var i = 0; i < data.length; i++) {
+            var placedata = data[i];
 
-        var placedata = data[i];
-
-        var place_name = "<h1>" + placedata.name + "</h1>";
-        var place_address = "<h6>" + placedata.formatted_address + "</h6>";
-        var place_img_representation = "<img src='" + placedata.icon + "' />";
-        var place_internationa_phonenuber = (typeof placedata.international_phone_number !== 'undefined') ? "<p>" + placedata.international_phone_number + "</p>" : "";
+            var place_name = "<h1>" + placedata.name + "</h1>";
+            var place_address = "<h6>" + placedata.formatted_address + "</h6>";
+            var place_img_representation = "<img src='" + placedata.icon + "' />";
+            var place_internationa_phonenuber = (typeof placedata.international_phone_number !== 'undefined') ? "<p>" + placedata.international_phone_number + "</p>" : "";
 
 
-        var place_rating = (typeof placedata.rating !== 'undefined') ? "<p>Rating based on aggregated user reviews:<span class='star'>" + rating_display(placedata.rating) + "</span></p>" : "";
-        var place_website = (typeof placedata.website !== 'undefined') ? "<br/><a target='_blank' style='color:#324c73;' href='" + placedata.website + "'>" + placedata.website + "</a>" : "";
+            var place_rating = (typeof placedata.rating !== 'undefined') ? "<p>Rating based on aggregated user reviews:<span class='star'>" + rating_display(placedata.rating) + "</span></p>" : "";
+            var place_website = (typeof placedata.website !== 'undefined') ? "<br/><a target='_blank' style='color:#324c73;' href='" + placedata.website + "'>" + placedata.website + "</a>" : "";
 
-        var user_reviews = "";
-        if (typeof placedata.reviews !== 'undefined') {
-            for (var j = 0; j < placedata.reviews.length; j++) {
+            var user_reviews = "";
+            if (typeof placedata.reviews !== 'undefined') {
+                for (var j = 0; j < placedata.reviews.length; j++) {
 
-                var place_reviews = placedata.reviews[j];
-                var review_author = "<h5>" + place_reviews.author_name + "</h5>";
-                var review_authorlink = (typeof place_reviews.author_url !== 'undefined') ? "<a target='_blank' href='" + place_reviews.author_url + "'>" + review_author + "</a>" : "<a href='#'>" + review_author + "</a>";
-                var review_rating = "<p style='font-size: 15px;'>Rating: <span class='star'>" + rating_display(place_reviews.rating) + "</span> </p>";
-                var review_text = "<p style='font-size: 12px;'>" + place_reviews.text + "</p>";
+                    var place_reviews = placedata.reviews[j];
+                    var review_author = "<h5>" + place_reviews.author_name + "</h5>";
+                    var review_authorlink = (typeof place_reviews.author_url !== 'undefined') ? "<a target='_blank' href='" + place_reviews.author_url + "'>" + review_author + "</a>" : "<a href='#'>" + review_author + "</a>";
+                    var review_rating = "<p style='font-size: 15px;'>Rating: <span class='star'>" + rating_display(place_reviews.rating) + "</span> </p>";
+                    var review_text = "<p style='font-size: 12px;'>" + place_reviews.text + "</p>";
 
-                user_reviews += "<li class='list-group-item' style='color: #333;'>" + review_authorlink + review_rating + review_text + "</li>";
+                    user_reviews += "<li class='list-group-item' style='color: #333;'>" + review_authorlink + review_rating + review_text + "</li>";
+                }
             }
-        }
-        getReview(placedata.place_id);
-        var final_users_review = "<ul class='list-group' id='"+placedata.place_id+"'>" + user_reviews + "</ul>";
+            getReview(placedata.place_id);
+            var final_users_review = "<ul class='list-group' id='"+placedata.place_id+"'>" + user_reviews + "</ul>";
+
 
         str_container += "<div class='col-lg-6 '>" + place_img_representation + place_name + place_address  + place_internationa_phonenuber + place_rating + place_website + final_users_review + "<button class='btn btn-primary btn-sm add_review'  data-place_id= '" + placedata.place_id + "'> Write a review</button></div>";
+
+        document.getElementById("placeres").innerHTML = str_container;
     }
 
-    document.getElementById("placeres").innerHTML = str_container;
 }
 
 function getPlace_contenet(place) {
@@ -408,5 +419,6 @@ function rating_display(rating) {
     }
 
     return html_rating;
+    }
 }
 
