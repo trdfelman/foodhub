@@ -274,7 +274,6 @@ require_once("lib/initialize.php");
                 <div id="alert-msg">
                 </div>
             </div>
-
             <select class="js-example-basic-multiple form-control" multiple="" id="selecta">
                 <optgroup id="recent" label="Recent selection">
 
@@ -289,7 +288,7 @@ require_once("lib/initialize.php");
                 <span style="color:#545454;">My radius slider lorem ipsum</span>
             </div>
             <div class="col-lg-12 text-center">
-                <input id="my_slider" type="text"/>
+                <input id="my_slider" type="text" data-slider-handle="custom" class="fa fa-check-circle"/>
             </div>
             <div class="col-lg-12 text-center">
                 <p></p>
