@@ -14,6 +14,13 @@ var place_details_sorbydistance = [];
 var radius_val;
 
 $(document).ready(function () {
+    $(window).load(function(){
+        if(localStorage.getItem("recent_choice") != null){
+            $("#recent").html("");
+            $("#recent").html(localStorage.getItem("recent_choice"));
+        }
+    });
+
     $("#selecta").select2({
         placeholder: "Select Places...",
         allowClear: true,
@@ -83,6 +90,8 @@ $(document).ready(function () {
                 $("#mnu_1,#your").css("display", "block");
             }
         }
+        var recent_cat = [];
+
         selected_val    = $("#selecta").select2('data');
         recentitems     = $('#recent option').size();
         for(i = 0 ; i < selected_val.length;i++){
@@ -92,13 +101,13 @@ $(document).ready(function () {
         if(recentitems>1){
             $("#recent option").slice(0,totalsize).remove();
         }
-
         $("#selecta").select2({
             placeholder: "Select Places...",
             allowClear: true,
             maximumSelectionLength: 3
         });
 
+        localStorage.setItem("recent_choice",$("#recent").html());
     });
 
     $(".sortby").click(function () {
