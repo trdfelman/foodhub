@@ -173,7 +173,7 @@ textarea {
     border-radius: 4px;
     margin: 1em;
     border-bottom: solid 3px #eee;
-    padding: 1em 0 1em 0;
+    padding: 1em;
 
 }
 
@@ -224,10 +224,19 @@ border-color: #161f29;
 @media (min-width: 1200px) {
     #placeres > div {
         width: 45%;
-        padding: 1em 0 1em 0;
+        padding: 1em;
     }
 }
 
 .mapper {
     font-family: MapFont;
+}
+
+#page-top > header > div > div:nth-child(3) > div:nth-child(1), #page-top > header > div > div:nth-child(3) > div:nth-child(3){
+    padding: 1.5em 0 1em 0;
+}
+
+#placeres > div > a {
+    word-break: break-all;
+    word-wrap: break-word;
 }

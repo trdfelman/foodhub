@@ -128,7 +128,7 @@ require_once("lib/initialize.php");
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#page-top">sitename<span class="mapper">k</span></a>
+            <a class="navbar-brand" href="#page-top">sitename</a>
 
         </div>
 
@@ -483,7 +483,7 @@ require_once("lib/initialize.php");
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 page-scroll">
-                    <a href="#page-top"><strong><span class="foot-nom">foodhub<span class="mapper">k</span>&nbsp;</span></strong></a>Copyright &copy;
+                    <a href="#page-top"><strong><span class="foot-nom">foodhub&nbsp;</span></strong></a>Copyright &copy;
                     All rights reserved 2015
                 </div>
             </div>
