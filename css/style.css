@@ -77,26 +77,18 @@
 }
 
 .glyphicon-refresh-animate {
-    -animation: spin .7s infinite linear;
+    animation: spin .7s infinite linear;
     -webkit-animation: spin2 .7s infinite linear;
 }
 
 @-webkit-keyframes spin2 {
-    from {
-        -webkit-transform: rotate(0deg);
-    }
-    to {
-        -webkit-transform: rotate(360deg);
-    }
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
 }
 
 @keyframes spin {
-    from {
-        transform: scale(1) rotate(0deg);
-    }
-    to {
-        transform: scale(1) rotate(360deg);
-    }
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
 }
 
 #noSubmit,.loading {
@@ -257,5 +249,5 @@ border-color: #161f29;
     line-height: 7px;
     font-size: 2em;
     content: '\f041'; /*unicode check character*/
-    color: #329DF0;
+    color: #F34C44;
 }

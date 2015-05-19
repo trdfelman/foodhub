@@ -61,7 +61,7 @@ require_once("lib/initialize.php");
                 });
             });
 
-            $("#my_slider").slider({step: 100, min: 500, max: 5000});
+            $("#my_slider").slider({step: 100, min: 500, max: 10000});
         });
 
         window.fbAsyncInit = function () {
