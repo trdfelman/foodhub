@@ -51,7 +51,7 @@ require_once("lib/initialize.php");
     <script type="text/javascript">
         $(document).ready(function () {
             $.getJSON("js/place_types.json", function (place_type) {
-                $("#selecta option").remove(); // Remove all <option> child tags.
+                $("#selecta2 option").remove(); // Remove all <option> child tags.
                 $.each(place_type.place_types, function (index, item) { // Iterates through a collection
                     $("#selecta2").append( // Append an object to the inside of the select box
                         $("<option></option>") // Yes you can do this.
