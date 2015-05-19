@@ -296,7 +296,7 @@ function getReview(pid){
             if (data) {
                 var db_user_review = JSON.parse(data);
                 for (i = 0; i < db_user_review.length; i++) {
-                   // alert(db_user_review[i].id);
+                    // alert(db_user_review[i].id);
                     var db_author_review = "<h5>" + db_user_review[i].full_name + "</h5>";
                     var db_rating_review = "<p style='font-size: 15px;'>Rating:  <span class='star'>" + rating_display(db_user_review[i].rating) + "</p>";
                     var db_text_review = "<p style='font-size: 12px;'>" + db_user_review[i].reviewtext + "</p>";
@@ -309,7 +309,7 @@ function getReview(pid){
     });
 }
 function display_sorted_results(localstorage_data) {
-    if(localstorage_data != null){
+    if (localstorage_data != null) {
         var data = localstorage_data.replace(/"\\&quot;/g, "'").replace(/\\&quot;"/g, "'");
 
         data = JSON.parse(data);
@@ -345,8 +345,8 @@ function display_sorted_results(localstorage_data) {
             getReview(placedata.place_id);
             var final_users_review = "<ul class='list-group' id='"+placedata.place_id+"'>" + user_reviews + "</ul>";
 
-
-        str_container += "<div class='col-lg-6 '>" + place_img_representation + place_name + place_address  + place_internationa_phonenuber + place_rating + place_website + final_users_review + "<button class='btn btn-primary btn-sm add_review'  data-place_id= '" + placedata.place_id + "'> Write a review</button></div>";
+            str_container += "<div class='col-lg-6 '>" + place_img_representation + place_name + place_address + place_internationa_phonenuber + place_rating + place_website + final_users_review + "<button class='btn btn-primary btn-sm add_review'  data-place_id= '" + placedata.place_id + "'> Write a review</button></div>";
+        }
 
         document.getElementById("placeres").innerHTML = str_container;
     }
@@ -419,6 +419,4 @@ function rating_display(rating) {
     }
 
     return html_rating;
-    }
 }
-
