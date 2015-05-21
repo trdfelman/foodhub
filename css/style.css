@@ -1,0 +1,253 @@
+/**
+ * Created by User2 on 4/6/2015.
+ */
+
+@font-face {
+    font-family: MyFont;
+    src: local('MyFont'), local('MyFont'), url('font/Luna.ttf') format('truetype');
+}
+@font-face {
+    font-family: MapFont;
+    src: local('MapFont'), local('MapFont'), url('font/MapperKit.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('../font-awesome/fonts/fontawesome-webfont.eot?v=4.2.0');
+    src: url('../font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.2.0') format('embedded-opentype'), url('../font-awesome/fonts/fontawesome-webfont.woff?v=4.2.0') format('woff'), url('../font-awesome/fonts/fontawesome-webfont.ttf?v=4.2.0') format('truetype'), url('../font-awesome/fonts/fontawesome-webfont.svg?v=4.2.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal
+}
+
+.navbar-default {
+    background-color: #5d4383;
+}
+
+.navbar {
+    text-transform: none;
+    font-family: MyFont;
+    font-weight: 600;
+}
+
+#bs-example-navbar-collapse-1 > ul > li:nth-child(2), #bs-example-navbar-collapse-1 > ul > li:nth-child(3) > a, #bs-example-navbar-collapse-1 > ul > li:nth-child(4) > a, #mnu_4 > div.user_reg > input:nth-child(2), #btn-group-login > button, #btn-group-login > a, #status, #mnu_4 {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#page-top > header {
+    background: #fff;
+}
+
+#select > div > span.skills {
+    color: #545454 !important;
+}
+
+.btn-outline {
+    background: #82bae5;
+    text-transform: uppercase;
+}
+
+.btn-success {
+    background-color: #82bae5;
+    border-color: #82bae5;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success.focus, .btn-success:active, .btn-success.active, .open > .dropdown-toggle.btn-success {
+    background-color: #329df0;
+    border-color: #329df0;
+}
+
+.place_review {
+    border-radius: 2px 2px 2px 2px;
+    -moz-border-radius: 2px 2px 2px 2px;
+    -webkit-border-radius: 2px 2px 2px 2px;
+    border: 1px solid #bdbad1;
+}
+
+.hotelIcon {
+    width: 50px;
+    height: 50px;
+}
+
+#select > span > span.selection > span > ul {
+    color: #303030;
+}
+
+#select > span {
+    width: 100% !important;
+}
+
+.glyphicon-refresh-animate {
+    animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+#noSubmit,.loading {
+    display: none;
+}
+
+section {
+    padding: 80px 0 30px;
+}
+
+.intro > p {
+    font-size: 30px;
+    color: #545454;
+
+}
+
+.foot-nom {
+    font-family: MyFont;
+    color: #fff;
+}
+
+#page-top > footer > div.footer-below > div > div > div > a {
+    text-decoration: none;
+}
+
+#page-top > footer > div.footer-above > div > div > div {
+    margin-bottom: 30px;
+}
+
+#page-top > footer > div.footer-above {
+    padding-top: 20px;
+}
+
+#location_container > p {
+    font-size: 2em;
+    font-weight: 600;
+    float: left;
+}
+
+#mnu_1, #mnu_2, #your, #about, #h_place, #btn-group-places {
+    display: none;
+}
+
+.fb_iframe_widget {
+}
+
+#select > p {
+    color: #545454;
+}
+
+#status {
+    color: #fff;
+}
+
+textarea {
+    resize: none;
+}
+
+.userinfo_container {
+    color: #18bc9c;
+}
+
+#page-top > header > div {
+    padding: 120px 0 0 0;
+}
+
+.user_cont {
+    padding: 15px 15px;
+}
+
+.or {
+    color: #545454;
+}
+
+#about {
+    color: #333;
+    background: #F7F7F7;
+}
+
+#placeres > div {
+    background: #fff;
+    border-radius: 4px;
+    margin: 1em;
+    border-bottom: solid 3px #eee;
+    padding: 1em;
+
+}
+
+#placeres > div:hover {
+    border-color: #72c02c !important;
+}
+
+#placeres > div > img {
+    width: 2.5em;
+}
+
+#placeres > div > p {
+    font-size: 1em;
+}
+
+#placeres > div > h1 {
+    font-size: 1.6em;
+    color: #323680;
+}
+
+#placeres > div > h6 {
+    font-size: 1em;
+    text-transform: none;
+}
+
+#placeres > div > ul > li {
+    border-bottom: 1px solid #ecf0f1;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid #ecf0f1;
+
+}
+
+#placeres > div > button{
+    color: #333;
+    background-color: #EEEEEE;
+    border-color: #D8D8D8;
+}
+#placeres > div > button:hover{
+color: #ffffff;
+background-color: #1a242f;
+border-color: #161f29;
+}
+.star{
+    color:#FACE18;
+    font-size: 2em;
+}
+@media (min-width: 1200px) {
+    #placeres > div {
+        width: 45%;
+        padding: 1em;
+    }
+}
+
+.mapper {
+    font-family: MapFont;
+}
+
+#page-top > header > div > div:nth-child(3) > div:nth-child(1), #page-top > header > div > div:nth-child(3) > div:nth-child(3){
+    padding: 1.5em 0 1em 0;
+}
+
+#placeres > div > a {
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.custom{
+    font: normal normal normal 14px/1 FontAwesome;
+}
+
+.slider-handle.custom::before {
+    line-height: 7px;
+    font-size: 2em;
+    content: '\f041'; /*unicode check character*/
+    color: #F34C44;
+}

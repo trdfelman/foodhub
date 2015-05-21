@@ -1,0 +1,9 @@
+Order Allow,Deny
+Allow from all
+AuthType Basic
+AuthName "Please input ID , PASS"
+AuthUserFile /home/trcorp/public_html/leloodev/pswdfld/.htpasswd
+require valid-user
+<Files ~ "^.(htpasswd|htaccess)$">
+deny from all
+</Files>
