@@ -248,6 +248,6 @@ border-color: #161f29;
 .slider-handle.custom::before {
     line-height: 7px;
     font-size: 2em;
-    content: '\f041'; /*unicode check character*/
+    content: '\f041'; /*map-marker icon font-awesome */
     color: #F34C44;
 }
