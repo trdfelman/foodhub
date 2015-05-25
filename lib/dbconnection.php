@@ -11,7 +11,7 @@ class MySqlDatabase
     protected $host = "localhost";
     protected $user = "root";
     protected $password = "trscebu123";
-    protected $dbname = "leloo";
+    protected $dbname = "foodhub";
 
     protected $connection;
     private $magic_quotes_active;
